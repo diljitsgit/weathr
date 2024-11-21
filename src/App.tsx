@@ -1,7 +1,11 @@
+import Navbar from "./navbar";
+
 function App() {
   return (
     <>
-      <div></div>
+      <div className="bg-background w-screen h-screen">
+        <Navbar></Navbar>
+      </div>
     </>
   );
 }
