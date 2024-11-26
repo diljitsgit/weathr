@@ -10,7 +10,8 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
-        background: "#090910",
+        dbackground: "#090910",
+        lbackground: "#D8D8D8",
         primary: "#3E5EFF",
         outline: "#27272A",
       },
