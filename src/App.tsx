@@ -11,8 +11,77 @@ type NavbarProps = {
     setTimeZone: Dispatch<SetStateAction<string>>;
 };
 
+type LocationData = {
+    asn: string;
+    city: string;
+    continent_code: string;
+    country: string;
+    country_area: number;
+    country_calling_code: string;
+    country_capital: string;
+    country_code: string;
+    country_code_iso3: string;
+    country_name: string;
+    country_population: number;
+    country_tld: string;
+    currency: string;
+    currency_name: string;
+    in_eu: boolean;
+    ip: string;
+    languages: string;
+    latitude: number;
+    longitude: number;
+    network: string;
+    org: string;
+    postal: string;
+    region: string;
+    region_code: string;
+    timezone: string;
+    utc_offset: string;
+    version: string;
+};
+
 //Variables
 let hour: number;
+
+//Location API Call
+let UserLocation: LocationData = {
+    asn: "AS24186",
+    city: "New Delhi",
+    continent_code: "AS",
+    country: "IN",
+    country_area: 3287590,
+    country_calling_code: "+91",
+    country_capital: "New Delhi",
+    country_code: "IN",
+    country_code_iso3: "IND",
+    country_name: "India",
+    country_population: 1352617328,
+    country_tld: ".in",
+    currency: "INR",
+    currency_name: "Rupee",
+    in_eu: false,
+    ip: "36.255.14.130",
+    languages:
+        "en-IN,hi,bn,te,mr,ta,ur,gu,kn,ml,or,pa,as,bh,sat,ks,ne,sd,kok,doi,mni,sit,sa,fr,lus,inc",
+    latitude: 28.652,
+    longitude: 77.1663,
+    network: "36.255.14.0/23",
+    org: "RailTel Corporation of India Ltd",
+    postal: "110020",
+    region: "National Capital Territory of Delhi",
+    region_code: "DL",
+    timezone: "Asia/Kolkata",
+    utc_offset: "+0530",
+    version: "IPv4",
+};
+const getApproxLocation = async () => {
+    const res = await fetch("https://ipapi.co/json/");
+    UserLocation = await res.json();
+};
+await getApproxLocation();
+
+console.log(UserLocation);
 
 //Timezone API Call
 let timezones: string[];
@@ -26,8 +95,8 @@ await getTimezoneData();
 
 //Wheather API Call
 const params = {
-    latitude: 12.9634,
-    longitude: 77.5855,
+    latitude: UserLocation.latitude,
+    longitude: UserLocation.longitude,
     hourly: ["temperature_2m", "weather_code"],
     forecast_days: 2,
 };
@@ -49,6 +118,7 @@ const weatherData = {
         weatherCode: hourly.variables(1)!.valuesArray()!,
     },
 };
+console.log(weatherData);
 
 //APP Component
 function App() {
@@ -200,7 +270,9 @@ function HeroSection({ passTimezone }: { passTimezone: string }) {
                             <h2 className="text-7xl font-semibold text-black dark:text-white flex flex-row items-baseline py-4">
                                 {Math.floor(
                                     weatherData.hourly.temperature2m[hour]
-                                ) + "°C"}
+                                )}
+                                <span>°C</span>
+                                <span className="text-[#3D3D3D]">/°F</span>
                             </h2>
                         </div>
                     </div>
@@ -294,7 +366,7 @@ function TimeData({ timezone }: { timezone: string }) {
                     </h2>
                 </div>
                 <img
-                    src="/src/assets/Rain.svg"
+                    src={calcIconUrl(weatherData.hourly.weatherCode[hour])}
                     alt="rain Icon"
                     className="size-28"
                 ></img>

@@ -1200,6 +1200,15 @@ video {
   color: rgb(9 9 11 / var(--tw-text-opacity, 1));
 }
 
+.text-\[\#3d3d3d\] {
+  --tw-text-opacity: 1;
+  color: rgb(61 61 61 / var(--tw-text-opacity, 1));
+}
+
+.text-opacity-60 {
+  --tw-text-opacity: 0.6;
+}
+
 .underline-offset-4 {
   text-underline-offset: 4px;
 }
