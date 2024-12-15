@@ -1,6 +1,6 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
     ChartConfig,
@@ -8,73 +8,45 @@ import {
     ChartTooltip,
     ChartTooltipContent,
 } from "@/components/ui/chart";
-// const chartData = [
-//     { time: "12:00", temp: 33 },
-//     { time: "13:00", temp: 30 },
-//     { time: "14:00", temp: 35 },
-//     { time: "15:00", temp: 20 },
-//     { time: "16:00", temp: 32 },
-//     { time: "17:00", temp: 21 },
-//     { time: "12:00", temp: 33 },
-//     { time: "13:00", temp: 30 },
-//     { time: "14:00", temp: 35 },
-//     { time: "15:00", temp: 20 },
-//     { time: "16:00", temp: 32 },
-//     { time: "17:00", temp: 21 },
-//     { time: "12:00", temp: 33 },
-//     { time: "13:00", temp: 30 },
-//     { time: "14:00", temp: 35 },
-//     { time: "15:00", temp: 20 },
-//     { time: "16:00", temp: 32 },
-//     { time: "17:00", temp: 21 },
-//     { time: "12:00", temp: 33 },
-//     { time: "13:00", temp: 30 },
-//     { time: "14:00", temp: 35 },
-//     { time: "15:00", temp: 20 },
-//     { time: "16:00", temp: 32 },
-//     { time: "17:00", temp: 21 },
-// ];
 
 type ChartProps = {
     chartData: {
         time: string;
         temp: number;
     }[];
+    chartColor: string;
 };
 
-const chartConfig = {
-    desktop: {
-        label: "Desktop",
-        color: "hsl(var(--chart-1))",
-    },
-} satisfies ChartConfig;
+export default function Component({ chartData, chartColor }: ChartProps) {
+    const chartConfig = {
+        desktop: {
+            label: "Desktop",
+            color: chartColor,
+        },
+    } satisfies ChartConfig;
 
-export default function Component({ chartData }: ChartProps) {
     return (
         <ChartContainer config={chartConfig} className="max-h-44">
             <AreaChart
                 accessibilityLayer
                 data={chartData}
                 margin={{
-                    left: 0,
-                    right: 0,
+                    left: 15,
+                    right: 15,
                 }}
             >
                 <CartesianGrid vertical={false} />
                 <XAxis
                     dataKey="time"
-                    tickLine={false}
-                    axisLine={true}
-                    tickMargin={10}
+                    tickLine={true}
+                    axisLine={false}
+                    tickMargin={4}
                     tickFormatter={(value) => value}
                 />
-                <YAxis
-                    tickLine={false}
-                    axisLine={false}
-                    tickMargin={0}
-                    tickCount={4}
+                <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent indicator="line" />}
                 />
-                <ChartTooltip cursor={true} content={<ChartTooltipContent />} />
                 <defs>
                     <linearGradient
                         id="fillDesktop"

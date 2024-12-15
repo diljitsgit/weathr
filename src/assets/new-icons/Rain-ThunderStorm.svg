@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32">
+  <path fill="url(#a)" fill-rule="evenodd" d="M9 23.347C4.918 21.817 2 17.762 2 13 2 6.925 6.75 2 12.608 2c4.861 0 8.958 3.39 10.213 8.014.142-.01.284-.014.428-.014C26.978 10 30 13.134 30 17s-3.022 7-6.75 7c-.084 0-.167-.002-.25-.005V22h.303C25.836 21.97 28 19.81 28 17c0-2.83-2.195-5-4.75-5a4.54 4.54 0 0 0-2.04.486 9.247 9.247 0 0 0-.25-1.696l-.003.001C20.009 6.85 16.584 4 12.608 4 7.922 4 4 7.96 4 13c0 3.662 2.07 6.753 5 8.17v2.177Z" clip-rule="evenodd"/>
+  <path fill="url(#b)" fill-rule="evenodd" d="m17.168 16.445 1.664 1.11L15.868 22h5.088l-5.479 7.585-1.621-1.17L17.044 24h-4.912l5.036-7.555Z" clip-rule="evenodd"/>
+  <path fill="url(#c)" fill-rule="evenodd" d="M20.36 26.924c-.207.487-.36 1.007-.359 1.485 0 .879.672 1.591 1.5 1.591.829 0 1.5-.712 1.5-1.59 0-.448-.168-.978-.392-1.485C22.164 25.917 21.5 25 21.5 25s-.696.886-1.14 1.924Z" clip-rule="evenodd"/>
+  <path fill="url(#d)" fill-rule="evenodd" d="M9.36 26.924c-.207.487-.36 1.007-.359 1.485 0 .879.672 1.591 1.5 1.591.829 0 1.5-.712 1.5-1.59 0-.448-.168-.978-.392-1.485C11.164 25.917 10.5 25 10.5 25s-.696.886-1.14 1.924Z" clip-rule="evenodd"/>
+  <defs>
+    <linearGradient id="a" x1="16" x2="16" y1="2" y2="24" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#95B6F6"/>
+      <stop offset="1" stop-color="#5193DE"/>
+    </linearGradient>
+    <linearGradient id="b" x1="16.544" x2="16.544" y1="16.445" y2="29.585" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5BD52"/>
+      <stop offset="1" stop-color="#F5DA79"/>
+    </linearGradient>
+    <linearGradient id="c" x1="21.5" x2="21.5" y1="25" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#95B6F6"/>
+      <stop offset="1" stop-color="#5193DE"/>
+    </linearGradient>
+    <linearGradient id="d" x1="10.5" x2="10.5" y1="25" y2="30" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#95B6F6"/>
+      <stop offset="1" stop-color="#5193DE"/>
+    </linearGradient>
+  </defs>
+</svg>
