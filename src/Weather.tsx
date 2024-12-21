@@ -192,6 +192,7 @@ function Weather() {
     const handleClick = () => {
         setLat(coordData.lat);
         setLong(coordData.long);
+        permissionGiven = true;
         console.log(userCoords);
     };
 
@@ -396,7 +397,30 @@ function Weather() {
                     </div>
                 </>
             ) : (
-                <>Loading</>
+                <>
+                    <div className="flex items-center gap-2 overflow-x-scroll md:overflow-hidden">
+                        <input
+                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                            type="text"
+                            name="lat"
+                            onChange={handleCoordChange}
+                            placeholder="latitude..."
+                        />
+                        <input
+                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                            type="text"
+                            name="long"
+                            onChange={handleCoordChange}
+                            placeholder="longitude..."
+                        />
+                        <button
+                            onClick={handleClick}
+                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                        >
+                            Search
+                        </button>
+                    </div>
+                </>
             )}
         </>
     );
