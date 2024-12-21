@@ -41,11 +41,16 @@ function Navbar({ changeThemeDrill }: { changeThemeDrill: () => void }) {
                     </h1>
                     <div className="flex gap-3 justify-between items-center">
                         <Toggle click={changeThemeDrill}></Toggle>
-                        <img
-                            src="/src/assets/github-mark-white.svg"
-                            alt="Github Icon"
-                            className="size-5 invert dark:invert-0"
-                        />
+                        <a
+                            href="https://github.com/diljitsgit/weathr"
+                            target="_blank"
+                        >
+                            <img
+                                src="/src/assets/github-mark-white.svg"
+                                alt="Github Icon"
+                                className="size-5 invert dark:invert-0"
+                            />
+                        </a>
                     </div>
                 </div>
             </div>
