@@ -459,19 +459,25 @@ function Weather() {
                 </>
             ) : (
                 <div className="flex items-center gap-2 my-2 overflow-x-scroll md:overflow-hidden">
-                    <input
-                        className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                        type="text"
-                        name="location"
-                        value={location}
-                        onChange={handleLocationChange}
-                        placeholder="enter city..."
-                    />
+                    <div>
+                        <input
+                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                            type="text"
+                            name="location"
+                            value={location}
+                            onChange={handleLocationChange}
+                            placeholder="enter city..."
+                        />
+                        <Suggestions
+                            data={locationData}
+                            functionDrill={suggestionSelected}
+                        ></Suggestions>
+                    </div>
                     <button
                         onClick={handleClick}
                         className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
                     >
-                        Search
+                        Clear
                     </button>
                 </div>
             )}
