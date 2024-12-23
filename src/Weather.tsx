@@ -29,10 +29,31 @@ type apiData = {
     };
 } | null;
 
-type coordDataType = {
-    lat: number;
-    long: number;
+type locationData = {
+    admin1: string;
+    admin1_id: number;
+    admin3: string;
+    admin3_id: number;
+    admin4: string;
+    admin4_id: number;
+    country: string;
+    country_code: string;
+    country_id: number;
+    elevation: number;
+    feature_code: string;
+    id: number;
+    latitude: number;
+    longitude: number;
+    name: string;
+    population: number;
+    postcodes: number[];
+    timezone: string;
 };
+
+type suggestionsData = {
+    results: Array<locationData>;
+    generationtime_ms: number;
+} | null;
 
 const weekday = [
     "Sunday",
@@ -121,6 +142,25 @@ async function getWeatherData(lat: number, long: number) {
     return weatherData;
 }
 
+async function getLocationData(location: string) {
+    const url =
+        "https://geocoding-api.open-meteo.com/v1/search?name=" +
+        location +
+        "&count=7";
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+
+        const json = response.json();
+
+        return json;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function weatherCodeConversion(a: number): string {
     if (a >= 0 && a <= 3) {
         return "Cloudy";
@@ -165,10 +205,13 @@ const useUserCoords = () => {
         });
     }
 
-    return {
-        lat: latitude,
-        long: longitude,
-    };
+    if (latitude != 0 && longitude != 0) {
+        return {
+            lat: latitude,
+            long: longitude,
+        };
+    }
+    return null;
 };
 
 function Weather() {
@@ -177,23 +220,43 @@ function Weather() {
     const [long, setLong] = useState(0);
     const range = 24;
     const [weatherData, setWeatherData] = useState<apiData>(null);
-    const [coordData, setCoordData] = useState<coordDataType>({
-        lat: 0,
-        long: 0,
-    });
+    const [location, setLocation] = useState("");
+    const [locationData, setLocationData] = useState<suggestionsData>(null);
 
-    const handleCoordChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCoordData({
-            ...coordData,
-            [e.target.name]: e.target.value,
-        });
+    const handleLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setLocation(e.target.value);
     };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data: suggestionsData = await getLocationData(location);
+                setLocationData(data);
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        };
+
+        fetchData();
+
+        return;
+    }, [location]);
+
+    function suggestionSelected(lat: number, long: number) {
+        setLat(lat);
+        setLong(long);
+        setLocation("");
+    }
+
+    useEffect(() => {
+        if (userCoords && !permissionGiven) {
+            setLat(userCoords.lat);
+            setLong(userCoords.long);
+        }
+    }, [userCoords]);
 
     const handleClick = () => {
-        setLat(coordData.lat);
-        setLong(coordData.long);
+        setLocation("");
         permissionGiven = true;
-        console.log(userCoords);
     };
 
     function handleData(data: apiData, lat: number, long: number) {
@@ -204,8 +267,6 @@ function Weather() {
     }
 
     useEffect(() => {
-        setLat(userCoords.lat);
-        setLong(userCoords.long);
         const fetchData = async () => {
             try {
                 const data: apiData = await getWeatherData(lat, long);
@@ -218,7 +279,7 @@ function Weather() {
         fetchData();
 
         return;
-    }, [lat, long, userCoords.lat, userCoords.long]);
+    }, [lat, long]);
 
     const tempChartData = () => {
         const out = [];
@@ -280,26 +341,26 @@ function Weather() {
                 <>
                     <div>
                         <div>
-                            <div className="flex items-center gap-2 overflow-x-scroll md:overflow-hidden">
-                                <input
-                                    className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                                    type="text"
-                                    name="lat"
-                                    onChange={handleCoordChange}
-                                    placeholder="latitude..."
-                                />
-                                <input
-                                    className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                                    type="text"
-                                    name="long"
-                                    onChange={handleCoordChange}
-                                    placeholder="longitude..."
-                                />
+                            <div className="flex items-center gap-2 my-2 overflow-x-scroll md:overflow-hidden">
+                                <div>
+                                    <input
+                                        className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                                        type="text"
+                                        name="location"
+                                        value={location}
+                                        onChange={handleLocationChange}
+                                        placeholder="enter city..."
+                                    />
+                                    <Suggestions
+                                        data={locationData}
+                                        functionDrill={suggestionSelected}
+                                    ></Suggestions>
+                                </div>
                                 <button
                                     onClick={handleClick}
                                     className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
                                 >
-                                    Search
+                                    Clear
                                 </button>
                             </div>
 
@@ -397,30 +458,22 @@ function Weather() {
                     </div>
                 </>
             ) : (
-                <>
-                    <div className="flex items-center gap-2 overflow-x-scroll md:overflow-hidden">
-                        <input
-                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                            type="text"
-                            name="lat"
-                            onChange={handleCoordChange}
-                            placeholder="latitude..."
-                        />
-                        <input
-                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                            type="text"
-                            name="long"
-                            onChange={handleCoordChange}
-                            placeholder="longitude..."
-                        />
-                        <button
-                            onClick={handleClick}
-                            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
-                        >
-                            Search
-                        </button>
-                    </div>
-                </>
+                <div className="flex items-center gap-2 my-2 overflow-x-scroll md:overflow-hidden">
+                    <input
+                        className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                        type="text"
+                        name="location"
+                        value={location}
+                        onChange={handleLocationChange}
+                        placeholder="enter city..."
+                    />
+                    <button
+                        onClick={handleClick}
+                        className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+                    >
+                        Search
+                    </button>
+                </div>
             )}
         </>
     );
@@ -476,6 +529,42 @@ function Daily({ weatherData }: { weatherData: apiData }) {
             })}
         </>
     );
+}
+
+function Suggestions({
+    data,
+    functionDrill,
+}: {
+    data: suggestionsData;
+    functionDrill: (lat: number, long: number) => void;
+}) {
+    if (data) {
+        if (data.results) {
+            return (
+                <>
+                    <div className="absolute divide-y divide-outline border-[1px] z-10 border-outline rounded-xl lg:rounded-3xl md:rounded-2xl min-w-max dark:bg-dbackground bg-lbackground">
+                        {data.results.map((a, index) => {
+                            return (
+                                <div
+                                    className="px-4 py-2 "
+                                    key={index}
+                                    onClick={() => {
+                                        functionDrill(a.latitude, a.longitude);
+                                    }}
+                                >
+                                    {a.name},{" "}
+                                    <span className="text-grayTxt text-sm">
+                                        {a.admin1}, {a.country}
+                                    </span>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </>
+            );
+        }
+    }
+    return <></>;
 }
 
 export default Weather;
