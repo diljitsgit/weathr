@@ -19,6 +19,7 @@ function Weather() {
     const [long, setLong] = useState(0);
     const [weatherData, setWeatherData] = useState<apiData>(null);
     const [location, setLocation] = useState("");
+    const [currentLocation, setCurrentLocation] = useState("");
     const [locationData, setLocationData] = useState<suggestionsData>(null);
     const [permissionGiven, setPermissionGiven] = useState(false);
 
@@ -36,14 +37,15 @@ function Weather() {
         };
 
         fetchData();
-
-        return;
     }, [location]);
 
     function suggestionSelected(lat: number, long: number) {
         setLat(lat);
         setLong(long);
         setLocation("");
+        if (locationData) {
+            setCurrentLocation(location);
+        }
     }
     useEffect(() => {
         if (userCoords && !permissionGiven) {
@@ -82,7 +84,7 @@ function Weather() {
         <>
             {permissionGiven && weatherData ? (
                 <>
-                    <div className="flex items-center gap-2 my-2 overflow-x-scroll md:overflow-hidden">
+                    <div className="my-2 overflow-x-scroll md:overflow-hidden">
                         <Input
                             value={location}
                             onChange={handleLocationChange}
@@ -101,6 +103,7 @@ function Weather() {
                         ></CurrentTemprature>
                         <CurrentWeather
                             weatherData={weatherData}
+                            location={currentLocation}
                         ></CurrentWeather>
                     </div>
                     <Tabs defaultValue="temprature" className="flex-1">

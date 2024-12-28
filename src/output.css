@@ -669,8 +669,25 @@ video {
   position: absolute;
 }
 
+.top-\[50\%\] {
+  top: 50%;
+}
+
+.top-\[25\%\] {
+  top: 25%;
+}
+
 .z-10 {
   z-index: 10;
+}
+
+.m-2 {
+  margin: 0.5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .my-0\.5 {
@@ -683,9 +700,9 @@ video {
   margin-bottom: 0.5rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
+.mx-2 {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .mb-2 {
@@ -694,6 +711,10 @@ video {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .block {
@@ -714,22 +735,6 @@ video {
 
 .hidden {
   display: none;
-}
-
-.aspect-\[5\/2\] {
-  aspect-ratio: 5/2;
-}
-
-.aspect-\[10\/2\] {
-  aspect-ratio: 10/2;
-}
-
-.aspect-\[7\/2\] {
-  aspect-ratio: 7/2;
-}
-
-.aspect-\[8\/2\] {
-  aspect-ratio: 8/2;
 }
 
 .aspect-auto {
@@ -759,6 +764,10 @@ video {
   height: 0.625rem;
 }
 
+.h-40 {
+  height: 10rem;
+}
+
 .h-9 {
   height: 2.25rem;
 }
@@ -771,20 +780,8 @@ video {
   height: 100vh;
 }
 
-.h-40 {
-  height: 10rem;
-}
-
 .max-h-44 {
   max-height: 11rem;
-}
-
-.min-h-\[40\%\] {
-  min-height: 40%;
-}
-
-.min-h-\[80\%\] {
-  min-height: 80%;
 }
 
 .min-h-\[100\%\] {
@@ -822,11 +819,6 @@ video {
 .min-w-max {
   min-width: -moz-max-content;
   min-width: max-content;
-}
-
-.max-w-max {
-  max-width: -moz-max-content;
-  max-width: max-content;
 }
 
 .flex-1 {
@@ -1323,10 +1315,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:aspect-\[10\/2\] {
-    aspect-ratio: 10/2;
-  }
-
   .md\:justify-center {
     justify-content: center;
   }
@@ -1350,28 +1338,8 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:aspect-\[13\/2\] {
-    aspect-ratio: 13/2;
-  }
-
-  .lg\:w-\[60\%\] {
-    width: 60%;
-  }
-
-  .lg\:max-w-\[60\%\] {
-    max-width: 60%;
-  }
-
   .lg\:max-w-\[80\%\] {
     max-width: 80%;
-  }
-
-  .lg\:max-w-\[50\%\] {
-    max-width: 50%;
-  }
-
-  .lg\:max-w-\[100\%\] {
-    max-width: 100%;
   }
 
   .lg\:rounded-3xl {
@@ -1382,18 +1350,9 @@ video {
     border-radius: 0.75rem;
   }
 
-  .lg\:rounded-2xl {
-    border-radius: 1rem;
-  }
-
   .lg\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
-  }
-
-  .lg\:px-96 {
-    padding-left: 24rem;
-    padding-right: 24rem;
   }
 
   .lg\:py-10 {
@@ -1404,21 +1363,6 @@ video {
   .lg\:py-20 {
     padding-top: 5rem;
     padding-bottom: 5rem;
-  }
-
-  .lg\:px-36 {
-    padding-left: 9rem;
-    padding-right: 9rem;
-  }
-
-  .lg\:px-48 {
-    padding-left: 12rem;
-    padding-right: 12rem;
-  }
-
-  .lg\:px-40 {
-    padding-left: 10rem;
-    padding-right: 10rem;
   }
 }
 

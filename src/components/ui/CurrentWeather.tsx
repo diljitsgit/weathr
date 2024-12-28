@@ -4,8 +4,10 @@ import { weatherCodeConversion } from "@/lib/utils";
 
 export default function CurrentTemprature({
     weatherData,
+    location,
 }: {
     weatherData: apiData;
+    location: string;
 }) {
     if (weatherData) {
         return (
@@ -14,6 +16,11 @@ export default function CurrentTemprature({
                     <h4 className="text-lg text-black dark:text-white leading-6">
                         Weather
                     </h4>
+                    {location != "" && (
+                        <h4 className="text-lg text-black dark:text-white leading-6">
+                            {location}
+                        </h4>
+                    )}
                     <p className="text-grayTxt text-sm leading-3">
                         {WEEKDAY[weatherData.current.time.getDay()]},{" "}
                         {weatherData.current.time.getHours()}

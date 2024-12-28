@@ -9,7 +9,7 @@ type inputType = {
 export default function Input({ value, onChange, placeHolder }: inputType) {
     return (
         <input
-            className="px-3 py-1 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
+            className="px-3 py-1 mr-2 bg-transparent text-black dark:text-white rounded-md border-[1px] border-outline lg:rounded-xl md:rounded-lg focus:outline-none"
             type="text"
             value={value}
             onChange={onChange}
