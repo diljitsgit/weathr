@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> <img src="https://github.com/diljitsgit/weathr/blob/main/src/assets/new-icons/Cloudy.svg"></img>  WEATHR</h1>
+  <h1> <img src="https://github.com/diljitsgit/weathr/blob/main/src/assets/weather-icons/Cloudy.svg"></img>  WEATHR</h1>
 </div>
 
 # What is WEATHR?
