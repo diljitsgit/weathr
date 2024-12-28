@@ -28,7 +28,7 @@ export default function Daily({ weatherData }: { weatherData: apiData }) {
                             return (
                                 <div
                                     key={a.day}
-                                    className="flex flex-col min-w-max border-[1px] border-outline rounded-xl lg:rounded-3xl md:rounded-2xl justify-between items-center px-3 py-2"
+                                    className="flex flex-col min-w-max border-[1px] border-outline rounded-xl md:rounded-2xl justify-between items-center px-3 py-2"
                                 >
                                     <p className="text-lg text-black dark:text-white">
                                         {a.day.slice(0, 3)}

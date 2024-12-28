@@ -20,7 +20,7 @@ function App() {
             <div className={theme}>
                 <div className="bg-lbackground dark:bg-dbackground w-screen h-screen overflow-y-scroll overflow-x-hidden">
                     <Navbar changeThemeDrill={changeTheme}></Navbar>
-                    <div className="flex w-screen justify-between items-center px-4 py-4 md:px-16 lg:px-96 lg:py-20">
+                    <div className="flex w-screen justify-between items-center px-4 py-4 md:px-16 lg:py-20">
                         <Section>
                             <Weather></Weather>
                         </Section>
@@ -121,7 +121,7 @@ function Toggle({ click }: { click: () => void }) {
 
 function Section({ children }: { children: JSX.Element }) {
     return (
-        <div className="px-4 py-4 overflow-hidden lg:px-20 lg:py-10 bg-background border-[1px] border-outline rounded-xl lg:rounded-3xl md:rounded-2xl flex-1 text-white flex flex-col justify-between">
+        <div className="px-4 py-4 mx-auto overflow-hidden lg:max-w-[80%] xl:max-w-[60%] lg:px-20 lg:py-10 bg-background border-[1px] border-outline rounded-xl lg:rounded-3xl md:rounded-2xl flex-1 text-white flex flex-col justify-between">
             {children}
         </div>
     );
