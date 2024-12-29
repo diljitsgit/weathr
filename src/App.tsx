@@ -46,7 +46,7 @@ function Navbar({ changeThemeDrill }: { changeThemeDrill: () => void }) {
                             target="_blank"
                         >
                             <img
-                                src="/src/assets/github-mark-white.svg"
+                                src="/src/assets/github-mark-white.png"
                                 alt="Github Icon"
                                 className="size-5 invert dark:invert-0"
                             />

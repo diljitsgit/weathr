@@ -42,10 +42,10 @@ function Weather() {
     function suggestionSelected(lat: number, long: number) {
         setLat(lat);
         setLong(long);
-        setLocation("");
         if (locationData) {
-            setCurrentLocation(location);
+            setCurrentLocation(locationData.results[0].name);
         }
+        setLocation("");
     }
     useEffect(() => {
         if (userCoords && !permissionGiven) {
