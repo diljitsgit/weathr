@@ -147,7 +147,7 @@ function Weather() {
                     <Daily weatherData={weatherData}></Daily>
                 </>
             ) : (
-                <div className="flex items-center gap-2 my-2 overflow-x-scroll md:overflow-hidden">
+                <div className="my-2 overflow-x-scroll md:overflow-hidden">
                     <Input
                         value={location}
                         onChange={handleLocationChange}
