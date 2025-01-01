@@ -27,16 +27,25 @@ function Weather() {
         setLocation(e.target.value);
     };
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data: suggestionsData = await getLocationData(location);
-                setLocationData(data);
-            } catch (error) {
-                console.error("Error fetching weather data:", error);
-            }
-        };
+        const timer = setTimeout(() => {
+            console.log("Creating timer");
+            const fetchData = async () => {
+                try {
+                    const data: suggestionsData = await getLocationData(
+                        location
+                    );
+                    setLocationData(data);
+                } catch (error) {
+                    console.error("Error fetching weather data:", error);
+                }
+            };
 
-        fetchData();
+            fetchData();
+        }, 1000);
+
+        return () => {
+            clearTimeout(timer);
+        };
     }, [location]);
 
     function suggestionSelected(lat: number, long: number) {
