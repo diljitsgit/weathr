@@ -6,11 +6,11 @@ import { useUserCoords } from "./lib/hooks";
 import { getWeatherData } from "./lib/fetchWeatherData";
 import { presChartData, tempChartData, windChartData } from "./lib/utils";
 import { getLocationData } from "./lib/axios";
-import Daily from "./components/ui/DailyData";
+import Daily from "./DailyData";
 import Suggestions from "./components/ui/LocationSuggestions";
 import Input from "./components/ui/Input";
 import Button from "./components/ui/Button";
-import CurrentTemprature from "./components/ui/CurrentTemprature";
+import CurrentTemprature from "./CurrentTemprature";
 import CurrentWeather from "./components/ui/CurrentWeather";
 
 function Weather() {
