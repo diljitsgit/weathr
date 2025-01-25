@@ -13,7 +13,7 @@ export default function CurrentTemprature({
                     <div className="flex gap-3 items-baseline">
                         <img
                             src={
-                                "/src/assets/weather-icons/" +
+                                "src/assets/weather-icons/" +
                                 weatherCodeConversion(
                                     weatherData.current.weatherCode
                                 ) +
