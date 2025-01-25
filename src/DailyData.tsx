@@ -35,7 +35,7 @@ export default function Daily({ weatherData }: { weatherData: apiData }) {
                                     </p>
                                     <img
                                         src={
-                                            "./src/assets/weather-icons/" +
+                                            "/src/assets/weather-icons/" +
                                             weatherCodeConversion(
                                                 a.weatherCode
                                             ) +
