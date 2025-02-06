@@ -10,7 +10,7 @@ export const theme = {
         },
         colors: {
             dbackground: "#090910",
-            lbackground: "#D8D8D8",
+            lbackground: "#FAFAFA",
             grayTxt: "#747474",
             primary: "#3E5EFF",
             outline: "#27272A",

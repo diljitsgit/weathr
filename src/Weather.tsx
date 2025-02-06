@@ -40,7 +40,7 @@ function Weather() {
             };
 
             fetchData();
-        }, 1000);
+        }, 8);
 
         return () => {
             clearTimeout(timer);

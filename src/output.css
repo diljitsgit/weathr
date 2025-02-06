@@ -963,7 +963,7 @@ video {
 
 .bg-lbackground {
   --tw-bg-opacity: 1;
-  background-color: rgb(216 216 216 / var(--tw-bg-opacity, 1));
+  background-color: rgb(250 250 250 / var(--tw-bg-opacity, 1));
 }
 
 .bg-transparent {

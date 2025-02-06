@@ -21,7 +21,9 @@ export default function Suggestions({
                                         functionDrill(a.latitude, a.longitude);
                                     }}
                                 >
-                                    {a.name},{" "}
+                                    <span className="text-black dark:text-white">
+                                        {a.name},{" "}
+                                    </span>
                                     <span className="text-grayTxt text-sm">
                                         {a.admin1}, {a.country}
                                     </span>

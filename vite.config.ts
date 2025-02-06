@@ -4,6 +4,7 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
     plugins: [react()],
+    base: "/weathr/",
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
@@ -12,5 +13,4 @@ export default defineConfig({
     build: {
         target: "ES2022",
     },
-    base: "/weathr",
 });
