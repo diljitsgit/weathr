@@ -28,7 +28,6 @@ function Weather() {
     };
     useEffect(() => {
         const timer = setTimeout(() => {
-            console.log("Creating timer");
             const fetchData = async () => {
                 try {
                     const data: suggestionsData = await getLocationData(

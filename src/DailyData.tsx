@@ -1,3 +1,4 @@
+import getImageUrl from "./getImageUrl";
 import { WEEKDAY } from "./lib/constants";
 import { apiData } from "./lib/types";
 import { weatherCodeConversion } from "./lib/utils";
@@ -34,13 +35,9 @@ export default function Daily({ weatherData }: { weatherData: apiData }) {
                                         {a.day.slice(0, 3)}
                                     </p>
                                     <img
-                                        src={
-                                            "src/assets/weather-icons/" +
-                                            weatherCodeConversion(
-                                                a.weatherCode
-                                            ) +
-                                            ".svg"
-                                        }
+                                        src={getImageUrl(
+                                            weatherCodeConversion(a.weatherCode)
+                                        )}
                                         alt="There should be a icon here"
                                         className="size-12 mb-2"
                                     />

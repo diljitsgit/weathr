@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Weather from "./Weather";
+import github_logo from "./assets/github-mark-white.svg";
 
 //APP Component
 function App() {
@@ -46,7 +47,7 @@ function Navbar({ changeThemeDrill }: { changeThemeDrill: () => void }) {
                             target="_blank"
                         >
                             <img
-                                src="/src/assets/github-mark-white.png"
+                                src={github_logo}
                                 alt="Github Icon"
                                 className="size-5 invert dark:invert-0"
                             />

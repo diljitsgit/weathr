@@ -1,3 +1,4 @@
+import getImageUrl from "./getImageUrl";
 import { apiData } from "./lib/types";
 import { weatherCodeConversion } from "./lib/utils";
 
@@ -7,18 +8,19 @@ export default function CurrentTemprature({
     weatherData: apiData;
 }) {
     if (weatherData) {
+        console.log(
+            getImageUrl(weatherCodeConversion(weatherData.current.weatherCode))
+        );
         return (
             <>
                 <div className="flex items-baseline">
                     <div className="flex gap-3 items-baseline">
                         <img
-                            src={
-                                "src/assets/weather-icons/" +
+                            src={getImageUrl(
                                 weatherCodeConversion(
                                     weatherData.current.weatherCode
-                                ) +
-                                ".svg"
-                            }
+                                )
+                            )}
                             alt="a icon should be here"
                             className="size-12"
                         />
