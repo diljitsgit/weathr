@@ -8,9 +8,6 @@ export default function CurrentTemprature({
     weatherData: apiData;
 }) {
     if (weatherData) {
-        console.log(
-            getImageUrl(weatherCodeConversion(weatherData.current.weatherCode))
-        );
         return (
             <>
                 <div className="flex items-baseline">
